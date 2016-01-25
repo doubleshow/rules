@@ -90,6 +90,8 @@ function getGroupAt(group, path = []){
   }
 }
 
+export const clustersSelector = state => state.data.get('clusters')
+
 export const pathSelector = state => state.data.get('selected').path
 
 const commentsSelector = state => state.data.get('comments').toJS()

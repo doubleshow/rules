@@ -53,6 +53,7 @@ const FULL = [
 const initialState = Immutable.fromJS({
   isLoading: false,
   items: [],
+  clusters: {},
   groupBys: ['consequent'],
   projection: FULL,
   selected: {
@@ -66,7 +67,7 @@ const initialState = Immutable.fromJS({
 export default function data_reducer(state = initialState, action) {
   switch (action.type) {
   case DATA_LOAD:
-    return state.set('items', action.items)
+    return state.set('items', action.data.items).set('clusters', action.data.clusters)
 
   case DATA_ADD_GROUPBY:
     if (!state.get('groupBys').includes(action.key)){

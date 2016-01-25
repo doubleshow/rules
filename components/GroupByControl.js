@@ -9,7 +9,7 @@ export class GroupByControl extends Component {
   }
 
   renderFields(){
-    const fields = ['consequent', 'antecedents', 'strength']
+    const fields = ['consequent', 'antecedents', 'strength', 'isTrending']
     const {addGroupBy} = this.props
     return _.map(fields, f => {
       return <div key={f} className="chip" style={{margin:2}}><a href="#" onClick={()=>addGroupBy(f)}>{f}</a></div>

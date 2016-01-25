@@ -25,35 +25,33 @@ export function load() {
     //     console.error(err)
     //   })
 
-    fetch('/static/data/rules.json')
-      .then(response=>{
-        return response.text()
-      }).then(body=>{
 
-        // csv.parse(body, (err, data) =>{
-        //   let fields = data[0]
-        //   let values = _.rest(data)
-        //   let jsonArray = _.map(values, v => {
-        //     let o = _.zipObject(fields, v)
-        //     let areas = _.map(o["INTEREST_AREAS"].split(/[;,]/),_.trim)
-        //     o['AREA1'] = areas[0]
-        //     o['AREA2'] = areas[1]
-        //     o['AREA3'] = areas[2]
-        //     o['AREAS'] = areas
-        //     o['ADVISORS'] = [o['ADVISOR1'],o['ADVISOR2'],o['ADVISOR3']]
-        //     o['GPA'] = Math.ceil(Number(o['UGRD1_EXT_GPA']) / 0.25) * 0.25
-        //     return o
-        //   })
+    var f1 = fetch('/static/data/allData.json')
+      .then(res=>{
+        return res.text()
+      })
+      .then(body=>{
           let data = JSON.parse(body)
-          console.log(data)
           let rules = data.associationRules
           _.each(rules, (d,i) => {
             d.id = i
             d['strength'] = (Math.ceil(Number(d['ruleStrength']) / 0.01) * 0.01).toFixed(3)
           })
-          dispatch({type: types.DATA_LOAD, items: rules})
-
+          return rules
       })
+
+    var f2 = fetch('/static/data/clusters.json')
+           .then(res=>{
+             return res.text()
+           })
+           .then(body=>{
+              let data = JSON.parse(body)
+              return data
+           })
+
+    Promise.all([f1,f2]).then(([items, clusters]) => {
+      dispatch({type: types.DATA_LOAD, data: {items, clusters}})
+    })
   }
 }
 
