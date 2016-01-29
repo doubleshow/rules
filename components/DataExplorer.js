@@ -15,7 +15,7 @@ export default class DataExplorer extends Component {
   }
 
   renderBoth(){
-    return <SplitPane split="vertical" minSize="300" defaultSize="700">
+    return <SplitPane split="vertical" minSize="50" defaultSize="100">
       <div>
         { this.renderTree() }
       </div>
@@ -26,7 +26,7 @@ export default class DataExplorer extends Component {
   }
 
   renderTree(){
-    return <SplitPane split="vertical" minSize="150" defaultSize="150">
+    return <SplitPane split="vertical" minSize="50" defaultSize="50">
           <div>
             <GroupByControl/>
           </div>

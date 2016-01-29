@@ -54,7 +54,7 @@ class Item extends Component {
       }
     }
     const height = 300//40*labels.length
-    return <div style={{height}}>
+    return <div style={{height, width:'100%'}}>
       <ChartistGraph data={chartData} type={'Line'} options={options}/>
     </div>
   }
