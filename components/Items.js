@@ -40,6 +40,8 @@ class Item extends Component {
         }
     })
     const series = [data.matchesOverTime]
+    //console.log(_.findIndex(data.trend), _.sum(data.trend))
+
     const chartData = {
       labels,
       series
@@ -51,7 +53,16 @@ class Item extends Component {
       labels,
       axisX: {
         offset: 20
-      }
+      },
+      // series: {
+      //    'matches': {
+      //      lineSmooth: Chartist.Interpolation.simple(),
+      //      showArea: true
+      //    },
+      //    'trending': {
+      //      lineSmooth: Chartist.Interpolation.step()
+      //    }
+      //  }
     }
     const height = 300//40*labels.length
     return <div style={{height, width:'100%'}}>
