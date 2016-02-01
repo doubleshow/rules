@@ -36,6 +36,8 @@ export function load() {
           _.each(rules, (d,i) => {
             d.id = i
             d['strength'] = (Math.ceil(Number(d['ruleStrength']) / 0.01) * 0.01).toFixed(3)
+            d['trend'] = d['isTrending']
+            d['isTrending'] = _.any(d['isTrending'])
           })
           return rules
       })
